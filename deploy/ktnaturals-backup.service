@@ -1,0 +1,13 @@
+[Unit]
+Description=KT Naturals quiesced SQLite and media backup plus off-server copy
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ktnaturals
+WorkingDirectory=/opt/ktnaturals
+EnvironmentFile=/etc/ktnaturals-backup.env
+ExecStart=/bin/bash /opt/ktnaturals/deploy/backup.sh
+TimeoutStartSec=1h

@@ -1,0 +1,22 @@
+# KT Naturals owner guide
+
+Sign in at `/owner/login/` using the account created interactively by your site operator. The Owner studio works on a phone: Overview shows actual published/draft/archive counts, Products lists every status, Categories controls grouping, and Website & contact controls public information. Sign out from the POST-based button; change your own password with “Change password”. If locked out after repeated failed logins, contact the operator. There is no public sign-up.
+
+## Create or update a product
+
+1. Optionally create a category in Categories. Its slug is the short URL segment; do not casually change it after launch. Inactive categories and their products are hidden publicly.
+2. Select Products → Add product. Give it a real name, unique URL slug, useful short description and full description based on verified details. Save as **Draft**. Leave ingredient/storage fields empty unless you can verify them. Featured controls the homepage selection.
+3. From the saved product, add a priced pack size for each variation (for example 500 g and 1 kg). Each size has its own INR price, Active switch and Available switch. Prices must be nonnegative; confirm tax/delivery arrangements with customers separately. Mark unavailable sizes clearly rather than deleting them.
+4. Add a real product photo. Only JPEG, PNG and WebP still images under 8 MB and 20 megapixels are accepted; the app resizes and re-encodes them as WebP, removing metadata. Write useful alt text describing what the photo actually shows and mark one photo as Cover. Other photos appear on the detail page. Don't upload private documents, SVG, other brands' images or unlicensed stock photos.
+5. Use Private preview (staff-only), review the displayed pack prices and availability, then edit Status to **Published** and save. Publishing requires an active priced size and a cover photo. Public pages and sitemap now show the product. Product, size, photo, category and website-settings editors reject stale changes. If you see a “changed since you opened the editor” error, copy any unsaved text, reload, review the current data and resubmit; another edit won and yours was not silently written over.
+6. To retire a product, use Archive product and confirm. Nothing is hard-deleted. Draft and archived items do not appear on public pages or in the sitemap. To remove the last active size/cover, first return a published product to Draft. A removed or replaced product photo is deleted from current public media after the edit commits; prior completed backup snapshots still contain older photos. Archived products keep their photos so they can be restored later.
+
+## Contact and information
+
+Under Website & contact add your real homepage intro, verified contact details, international WhatsApp number (digits only, country code, no `+`), opening hours, location, delivery area and Instagram URL if applicable. Leave missing fields empty; do not fabricate a phone number or service area. If WhatsApp is empty the site cannot offer the enquiry action. A customer selects a size and quantity, then the site opens a prefilled WhatsApp message with the current listed unit price. **The customer must send it**; this is not a placed order and does not collect payment. Confirm stock, total, delivery and payment directly.
+
+Review the imported About story against the supplied catalogue and correct anything outdated. Have the delivery/returns and privacy pages reviewed and approved before enabling their Published switches. Blank/draft information is not presented as an agreed policy. Don't claim certifications, special production methods, health benefits or product attributes without owner-verified supporting facts. Replace the labelled catalogue photo placeholders with real product photographs; confirm the imported prices and availability before public launch. `CATALOGUE_IMPORT.md` lists the unresolved Khapli price discrepancy. Update prices and availability whenever they change.
+
+## Operational care
+
+Ask the operator to back up **both** the database and uploaded photos regularly, copy backups to independently configured off-server storage and perform restore drills. Avoid editing during the scheduled backup maintenance window. Do not copy the development demo database into production. Contact the operator for password reset: `manage.py changepassword USERNAME` is interactive. Public deployment, domain/Search Console verification and policy approval are separate launch steps described in `OPERATIONS.md` and `SEO_LAUNCH.md`.

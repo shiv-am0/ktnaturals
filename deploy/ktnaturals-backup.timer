@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily KT Naturals backup (brief planned downtime)
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+RandomizedDelaySec=10m
+Persistent=true
+Unit=ktnaturals-backup.service
+
+[Install]
+WantedBy=timers.target

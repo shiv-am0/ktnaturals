@@ -1,0 +1,32 @@
+{
+	email {$ACME_EMAIL}
+	admin off
+}
+{$DOMAIN} {
+	encode zstd gzip
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		Strict-Transport-Security "max-age=31536000"
+	}
+	request_body {
+		max_size 12MB
+	}
+	handle_path /static/* {
+		root * /srv/static
+		file_server
+	}
+	handle_path /media/* {
+		@image path_regexp image \.(jpg|jpeg|png|webp)$
+		handle @image {
+			root * /srv/media
+			header Content-Security-Policy "default-src 'none'; sandbox"
+			file_server
+		}
+		respond 404
+	}
+	handle {
+		reverse_proxy app:8000
+	}
+}
